@@ -1,8 +1,15 @@
 import { createApp } from './src/createApp.js'
+import Pacman from './src/pacman.js'
 
-function createGameBoard() {
+function initGame() {
   const app = createApp()
   console.log(app)
-  document.body.appendChild(app.view)
+  root.appendChild(app.view)
+  const { pacman } = new Pacman()
+  app.stage.addChild(pacman)
+
+  app.ticker.add(() => {
+    pacman.move()
+  })
 }
-createGameBoard()
+initGame()
