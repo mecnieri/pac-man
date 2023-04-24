@@ -17,7 +17,7 @@ cookiesCoords.forEach(ck => {
   let cookie = new PIXI.Graphics()
 
   cookie.beginFill(0xc7a317)
-  cookie.drawCircle(ck.x, ck.y, 4) // x, y, r
+  cookie.drawCircle(ck.x, ck.y, 3.5) // x, y, r
   cookie.endFill()
 
   cookiesContainer.addChild(cookie)

@@ -12,8 +12,8 @@ function initGame() {
   const { pacman } = new Pacman()
 
   app.stage.addChild(pacman)
-  app.stage.addChild(obsticlesContainer)
   app.stage.addChild(cookiesContainer)
+  app.stage.addChild(obsticlesContainer)
 
   app.ticker.add(delta => {
     pacman.move(delta)
