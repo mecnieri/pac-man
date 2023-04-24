@@ -12,14 +12,20 @@ export default class Ghost {
             .endFill()
         this.ghost.x = x
         this.ghost.y = y
+        this.ghost.color = color
         this.ghost.currentDirection = changeDirection()
         this.ghost.move = this.move
         this.ghost.checkCurrentDirectionAndGo = this.checkCurrentDirectionAndGo
+        this.ghost.stop = this.stop
         this.ghost.speed = 3
         this.ghost.radius = 20
     }
     move(delta) {
         this.checkCurrentDirectionAndGo(delta, this.currentDirection)
+    }
+    stop() {
+        this.speed = 0
+        // console.log('I crushed', this.color)
     }
     checkCurrentDirectionAndGo(delta, currentDirection) {
         switch (currentDirection) {
@@ -95,8 +101,11 @@ export default class Ghost {
 }
 
 for (let i = 0; i < 4; i++) {
+
     const { ghost } = new Ghost(29.615 * 5, 50 * i + 100, ghostColors[i])
     ghostContainer.addChild(ghost)
     ghosts.push(ghost)
+
+    
 }
 
