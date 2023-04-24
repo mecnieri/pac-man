@@ -1,4 +1,5 @@
-import { obsticlesCoords } from './obsticle/obsticleCoords.js'
+import { isCollisionWithObsticle } from './helpers.js'
+
 export default class Pacman {
   constructor() {
     this.pacman = new PIXI.Graphics()
@@ -16,8 +17,6 @@ export default class Pacman {
     this.pacman.checkDesiredDirectionAndChangeIfPosible =
       this.checkDesiredDirectionAndChangeIfPosible
     this.pacman.checkCurrentDirectionAndGo = this.checkCurrentDirectionAndGo
-    // this.nextX = 0
-    // this.nextY = 0
   }
 
   move(delta) {
@@ -156,50 +155,5 @@ export default class Pacman {
       e = e || window.event
       this.pacman.desiredDirection = e.key
     }
-  }
-}
-
-const isCollisionWithObsticle = (dir, x, y, next, radius) => {
-  switch (dir) {
-    case 'right':
-      return obsticlesCoords.some(obsticle => {
-        return (
-          x + radius < obsticle.left &&
-          next + radius > obsticle.left &&
-          y + radius > obsticle.top &&
-          y - radius < obsticle.bottom
-        )
-      })
-    case 'left':
-      return obsticlesCoords.some(obsticle => {
-        return (
-          x - radius > obsticle.right &&
-          next - radius < obsticle.right &&
-          y + radius > obsticle.top &&
-          y - radius < obsticle.bottom
-        )
-      })
-    case 'up':
-      return obsticlesCoords.some(obsticle => {
-        return (
-          x + radius > obsticle.left &&
-          x - radius < obsticle.right &&
-          next - radius < obsticle.bottom &&
-          y - radius > obsticle.bottom
-        )
-      })
-    case 'down':
-      
-      return obsticlesCoords.some(obsticle => {
-        return (
-          x + radius > obsticle.left &&
-          x - radius < obsticle.right &&
-          y + radius < obsticle.top &&
-          next + radius > obsticle.top
-        )
-      })
-
-    default:
-      break
   }
 }
