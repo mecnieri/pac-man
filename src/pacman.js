@@ -1,12 +1,11 @@
-
 import { obsticlesCoords } from './obsticleCoords.js'
 export default class Pacman {
   constructor() {
     this.pacman = new PIXI.Graphics()
-    this.pacman.beginFill(0xFDFF00)
+    this.pacman.beginFill(0xfdff00)
     this.pacman.x = 30
     this.pacman.y = 30
-    this.pacman.radius = 18
+    this.pacman.radius = 20
     this.pacman.drawCircle(0, 0, this.pacman.radius)
     this.pacman.endFill()
     this.pacman.desiredDirection = ''
@@ -14,7 +13,8 @@ export default class Pacman {
     this.pacman.speed = 4
     this.onKeyDown()
     this.pacman.move = this.move
-    this.pacman.checkDesiredDirectionAndChangeIfPosible = this.checkDesiredDirectionAndChangeIfPosible
+    this.pacman.checkDesiredDirectionAndChangeIfPosible =
+      this.checkDesiredDirectionAndChangeIfPosible
     this.pacman.checkCurrentDirectionAndGo = this.checkCurrentDirectionAndGo
     this.nextX = 0
     this.nextY = 0
@@ -29,22 +29,29 @@ export default class Pacman {
     switch (desiredDirection) {
       case 'ArrowRight':
         this.nextX = this.x + this.speed * delta
-        if (isNotAllowed('right', this.x, this.y, this.nextX, this.radius)) return
+        if (isNotAllowed('right', this.x, this.y, this.nextX, this.radius))
+          return
+        this.y = Math.round(this.y / 29.615) * 29.615
         this.currentDirection = this.desiredDirection
         break
       case 'ArrowLeft':
         this.nextX = this.x - this.speed * delta
-        if (isNotAllowed('left', this.x, this.y, this.nextX, this.radius)) return
+        if (isNotAllowed('left', this.x, this.y, this.nextX, this.radius))
+          return
+        this.y = Math.round(this.y / 29.615) * 29.615
         this.currentDirection = this.desiredDirection
         break
       case 'ArrowUp':
         this.nextY = this.y - this.speed * delta
         if (isNotAllowed('up', this.x, this.y, this.nextY, this.radius)) return
+        this.x = Math.round(this.x / 29.615) * 29.615
         this.currentDirection = this.desiredDirection
         break
       case 'ArrowDown':
         this.nextY = this.y + this.speed * delta
-        if (isNotAllowed('down', this.x, this.y, this.nextY, this.radius)) return
+        if (isNotAllowed('down', this.x, this.y, this.nextY, this.radius))
+          return
+        this.x = Math.round(this.x / 29.615) * 29.615
         this.currentDirection = this.desiredDirection
         break
     }
@@ -53,12 +60,14 @@ export default class Pacman {
     switch (currentDirection) {
       case 'ArrowRight':
         this.nextX = this.x + this.speed * delta
-        if (isNotAllowed('right', this.x, this.y, this.nextX, this.radius)) return
+        if (isNotAllowed('right', this.x, this.y, this.nextX, this.radius))
+          return
         this.x = this.nextX
         break
       case 'ArrowLeft':
         this.nextX = this.x - this.speed * delta
-        if (isNotAllowed('left', this.x, this.y, this.nextX, this.radius)) return
+        if (isNotAllowed('left', this.x, this.y, this.nextX, this.radius))
+          return
         this.x = this.nextX
         break
       case 'ArrowUp':
@@ -68,12 +77,12 @@ export default class Pacman {
         break
       case 'ArrowDown':
         this.nextY = this.y + this.speed * delta
-        if (isNotAllowed('down', this.x, this.y, this.nextY, this.radius)) return
+        if (isNotAllowed('down', this.x, this.y, this.nextY, this.radius))
+          return
         this.y = this.nextY
         break
     }
   }
-
 
   onKeyDown() {
     document.onkeydown = e => {
@@ -82,7 +91,6 @@ export default class Pacman {
     }
   }
 }
-
 
 const isNotAllowed = (dir, x, y, next, radius) => {
   switch (dir) {
@@ -127,12 +135,3 @@ const isNotAllowed = (dir, x, y, next, radius) => {
       break
   }
 }
-
-
-// const { up, down, left, right } = {
-//   up: 'ArrowUp',
-//   down: 'ArrowDown',
-//   right: 'ArrowRight',
-//   left: 'ArrowLeft',
-// }
-
