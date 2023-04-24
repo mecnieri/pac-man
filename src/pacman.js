@@ -1,4 +1,4 @@
-import { obsticlesCoords } from './obsticleCoords.js'
+import { obsticlesCoords } from './obsticle/obsticleCoords.js'
 export default class Pacman {
   constructor() {
     this.pacman = new PIXI.Graphics()

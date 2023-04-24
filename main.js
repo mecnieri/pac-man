@@ -1,6 +1,6 @@
 import { createApp } from './src/createApp.js'
 import Pacman from './src/pacman.js'
-import { obsticlesContainer } from './src/obsticle.js'
+import { obsticlesContainer } from './src/obsticle/obsticle.js'
 import { cookiesContainer } from './src/cookies.js'
 
 
