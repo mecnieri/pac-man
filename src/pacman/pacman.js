@@ -1,4 +1,4 @@
-import { isCollisionWithObsticle } from './helpers.js'
+import { isCollisionWithObsticle } from '../helpers.js'
 
 export default class Pacman {
   constructor() {

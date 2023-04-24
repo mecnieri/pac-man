@@ -1,5 +1,5 @@
 import { createApp } from './src/createApp.js'
-import Pacman from './src/pacman.js'
+import Pacman from './src/pacman/pacman.js'
 import { ghostContainer, ghosts } from './src/ghost/ghost.js'
 import { obsticlesContainer } from './src/obsticle/obsticle.js'
 import { cookiesContainer, cookies } from './src/cookies.js'
