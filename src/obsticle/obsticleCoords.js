@@ -19,13 +19,11 @@ export const obsticlesCoords = [
 
 function createObsticle(x, y, w, h) {
   return {
-    x: 29.615 * x - 6,
-    y: 29.615 * y - 6,
-    w: 29.615 * w + 12,
-    h: 29.615 * h + 12,
     left: 29.615 * x - 6,
     top: 29.615 * y - 6,
     right: 29.615 * x - 6 + 29.615 * w + 12,
     bottom: 29.615 * y - 6 + 29.615 * h + 12,
+    w: 29.615 * w + 12,
+    h: 29.615 * h + 12,
   }
 }

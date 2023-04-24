@@ -29,38 +29,74 @@ export default class Pacman {
     switch (desiredDirection) {
       case 'ArrowRight':
         this.nextX = this.x + this.speed * delta
-        if (isNotAllowed('right', this.x, this.y, this.nextX, this.radius))
+        if (
+          isCollisionWithObsticle(
+            'right',
+            this.x,
+            this.y,
+            this.nextX,
+            this.radius,
+          )
+        )
           return
         this.y = Math.round(this.y / 29.615) * 29.615
         this.currentDirection = this.desiredDirection
         break
       case 'ArrowLeft':
         this.nextX = this.x - this.speed * delta
-        if (isNotAllowed('left', this.x, this.y, this.nextX, this.radius))
+        if (
+          isCollisionWithObsticle(
+            'left',
+            this.x,
+            this.y,
+            this.nextX,
+            this.radius,
+          )
+        )
           return
         this.y = Math.round(this.y / 29.615) * 29.615
         this.currentDirection = this.desiredDirection
         break
       case 'ArrowUp':
         this.nextY = this.y - this.speed * delta
-        if (isNotAllowed('up', this.x, this.y, this.nextY, this.radius)) return
+        if (
+          isCollisionWithObsticle('up', this.x, this.y, this.nextY, this.radius)
+        )
+          return
         this.x = Math.round(this.x / 29.615) * 29.615
         this.currentDirection = this.desiredDirection
         break
       case 'ArrowDown':
         this.nextY = this.y + this.speed * delta
-        if (isNotAllowed('down', this.x, this.y, this.nextY, this.radius))
+        if (
+          isCollisionWithObsticle(
+            'down',
+            this.x,
+            this.y,
+            this.nextY,
+            this.radius,
+          )
+        )
           return
         this.x = Math.round(this.x / 29.615) * 29.615
         this.currentDirection = this.desiredDirection
         break
     }
   }
+
   checkCurrentDirectionAndGo(delta, currentDirection) {
     switch (currentDirection) {
       case 'ArrowRight':
         this.nextX = this.x + this.speed * delta
-        if (isNotAllowed('right', this.x, this.y, this.nextX, this.radius)) {
+        if (
+          isCollisionWithObsticle(
+            'right',
+            this.x,
+            this.y,
+            this.nextX,
+            this.radius,
+          )
+        ) {
           this.x = Math.round(this.x / 29.615) * 29.615
           this.y = Math.round(this.y / 29.615) * 29.615
           return
@@ -69,7 +105,15 @@ export default class Pacman {
         break
       case 'ArrowLeft':
         this.nextX = this.x - this.speed * delta
-        if (isNotAllowed('left', this.x, this.y, this.nextX, this.radius)) {
+        if (
+          isCollisionWithObsticle(
+            'left',
+            this.x,
+            this.y,
+            this.nextX,
+            this.radius,
+          )
+        ) {
           this.x = Math.round(this.x / 29.615) * 29.615
           this.y = Math.round(this.y / 29.615) * 29.615
           return
@@ -78,7 +122,9 @@ export default class Pacman {
         break
       case 'ArrowUp':
         this.nextY = this.y - this.speed * delta
-        if (isNotAllowed('up', this.x, this.y, this.nextY, this.radius)) {
+        if (
+          isCollisionWithObsticle('up', this.x, this.y, this.nextY, this.radius)
+        ) {
           this.x = Math.round(this.x / 29.615) * 29.615
           this.y = Math.round(this.y / 29.615) * 29.615
           return
@@ -87,7 +133,15 @@ export default class Pacman {
         break
       case 'ArrowDown':
         this.nextY = this.y + this.speed * delta
-        if (isNotAllowed('down', this.x, this.y, this.nextY, this.radius)) {
+        if (
+          isCollisionWithObsticle(
+            'down',
+            this.x,
+            this.y,
+            this.nextY,
+            this.radius,
+          )
+        ) {
           this.x = Math.round(this.x / 29.615) * 29.615
           this.y = Math.round(this.y / 29.615) * 29.615
           return
@@ -105,7 +159,7 @@ export default class Pacman {
   }
 }
 
-const isNotAllowed = (dir, x, y, next, radius) => {
+const isCollisionWithObsticle = (dir, x, y, next, radius) => {
   switch (dir) {
     case 'right':
       return obsticlesCoords.some(obsticle => {
