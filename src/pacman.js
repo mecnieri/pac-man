@@ -16,8 +16,8 @@ export default class Pacman {
     this.pacman.checkDesiredDirectionAndChangeIfPosible =
       this.checkDesiredDirectionAndChangeIfPosible
     this.pacman.checkCurrentDirectionAndGo = this.checkCurrentDirectionAndGo
-    this.nextX = 0
-    this.nextY = 0
+    // this.nextX = 0
+    // this.nextY = 0
   }
 
   move(delta) {
@@ -189,6 +189,7 @@ const isCollisionWithObsticle = (dir, x, y, next, radius) => {
         )
       })
     case 'down':
+      
       return obsticlesCoords.some(obsticle => {
         return (
           x + radius > obsticle.left &&
