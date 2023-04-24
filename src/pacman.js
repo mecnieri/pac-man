@@ -60,25 +60,38 @@ export default class Pacman {
     switch (currentDirection) {
       case 'ArrowRight':
         this.nextX = this.x + this.speed * delta
-        if (isNotAllowed('right', this.x, this.y, this.nextX, this.radius))
+        if (isNotAllowed('right', this.x, this.y, this.nextX, this.radius)) {
+          this.x = Math.round(this.x / 29.615) * 29.615
+          this.y = Math.round(this.y / 29.615) * 29.615
           return
+        }
         this.x = this.nextX
         break
       case 'ArrowLeft':
         this.nextX = this.x - this.speed * delta
-        if (isNotAllowed('left', this.x, this.y, this.nextX, this.radius))
+        if (isNotAllowed('left', this.x, this.y, this.nextX, this.radius)) {
+          this.x = Math.round(this.x / 29.615) * 29.615
+          this.y = Math.round(this.y / 29.615) * 29.615
           return
+        }
         this.x = this.nextX
         break
       case 'ArrowUp':
         this.nextY = this.y - this.speed * delta
-        if (isNotAllowed('up', this.x, this.y, this.nextY, this.radius)) return
+        if (isNotAllowed('up', this.x, this.y, this.nextY, this.radius)) {
+          this.x = Math.round(this.x / 29.615) * 29.615
+          this.y = Math.round(this.y / 29.615) * 29.615
+          return
+        }
         this.y = this.nextY
         break
       case 'ArrowDown':
         this.nextY = this.y + this.speed * delta
-        if (isNotAllowed('down', this.x, this.y, this.nextY, this.radius))
+        if (isNotAllowed('down', this.x, this.y, this.nextY, this.radius)) {
+          this.x = Math.round(this.x / 29.615) * 29.615
+          this.y = Math.round(this.y / 29.615) * 29.615
           return
+        }
         this.y = this.nextY
         break
     }
@@ -97,37 +110,37 @@ const isNotAllowed = (dir, x, y, next, radius) => {
     case 'right':
       return obsticlesCoords.some(obsticle => {
         return (
-          x + radius < obsticle.x &&
-          next + radius > obsticle.x &&
-          y + radius > obsticle.y &&
-          y - radius < obsticle.y + obsticle.h
+          x + radius < obsticle.left &&
+          next + radius > obsticle.left &&
+          y + radius > obsticle.top &&
+          y - radius < obsticle.bottom
         )
       })
     case 'left':
       return obsticlesCoords.some(obsticle => {
         return (
-          x - radius > obsticle.x + obsticle.w &&
-          next - radius < obsticle.x + obsticle.w &&
-          y + radius > obsticle.y &&
-          y - radius < obsticle.y + obsticle.h
+          x - radius > obsticle.right &&
+          next - radius < obsticle.right &&
+          y + radius > obsticle.top &&
+          y - radius < obsticle.bottom
         )
       })
     case 'up':
       return obsticlesCoords.some(obsticle => {
         return (
-          x + radius > obsticle.x &&
-          x - radius < obsticle.x + obsticle.w &&
-          next - radius < obsticle.y + obsticle.h &&
-          y - radius > obsticle.y + obsticle.h
+          x + radius > obsticle.left &&
+          x - radius < obsticle.right &&
+          next - radius < obsticle.bottom &&
+          y - radius > obsticle.bottom
         )
       })
     case 'down':
       return obsticlesCoords.some(obsticle => {
         return (
-          x + radius > obsticle.x &&
-          x - radius < obsticle.x + obsticle.w &&
-          y + radius < obsticle.y &&
-          next + radius > obsticle.y
+          x + radius > obsticle.left &&
+          x - radius < obsticle.right &&
+          y + radius < obsticle.top &&
+          next + radius > obsticle.top
         )
       })
 

@@ -1,29 +1,8 @@
 export const obsticlesCoords = [
-  {
-    x: 0,
-    y: 0,
-    w: 800,
-    h: 8,
-  },
-  {
-    x: 0,
-    y: 0,
-    w: 8,
-    h: 800,
-  },
-  {
-    x: 0,
-    y: 792,
-    w: 800,
-    h: 10,
-  },
-  {
-    x: 792,
-    y: 0,
-    w: 10,
-    h: 800,
-  },
-
+  createObsticle(0, 0, 27, 0),
+  createObsticle(0, 0, 0, 27),
+  createObsticle(27, 0, 0, 27),
+  createObsticle(0, 26.9, 27, 0),
   createObsticle(2, 2, 2, 2),
   createObsticle(6, 2, 2, 2),
   createObsticle(10, 2, 2, 2),
@@ -44,5 +23,9 @@ function createObsticle(x, y, w, h) {
     y: 29.615 * y - 6,
     w: 29.615 * w + 12,
     h: 29.615 * h + 12,
+    left: 29.615 * x - 6,
+    top: 29.615 * y - 6,
+    right: 29.615 * x - 6 + 29.615 * w + 12,
+    bottom: 29.615 * y - 6 + 29.615 * h + 12,
   }
 }

@@ -4,7 +4,6 @@ import { obsticlesContainer } from './src/obsticle.js'
 import { cookiesContainer } from './src/cookies.js'
 
 
-
 function initGame() {
   const app = createApp()
   root.appendChild(app.view)
