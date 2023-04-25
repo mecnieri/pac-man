@@ -15,6 +15,8 @@ function initGame() {
   loader.preload().then(() => start())
 
   function start() {
+
+
     console.log('game started')
     const { pacman } = new Pacman()
 
@@ -31,6 +33,9 @@ function initGame() {
       pacman.move(delta, ghosts, cookies, cherries)
       ghosts.forEach(gh => gh.move(delta))
     })
+    // console.log(window.innerHeight)
+    // console.log(document.getElementsByTagName('canvas'))
+    // document.getElementsByTagName('canvas')[0].height = window.innerHeight - 200
   }
 }
 

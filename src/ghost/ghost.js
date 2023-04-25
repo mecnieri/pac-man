@@ -102,10 +102,10 @@ export default class Ghost {
 
 for (let i = 0; i < 4; i++) {
 
-    const { ghost } = new Ghost(29.615 * 5, 50 * i + 100, ghostColors[i])
+    const { ghost } = new Ghost(29.615 * 13, 29.615 * 14 + i * 29, ghostColors[i])
     ghostContainer.addChild(ghost)
     ghosts.push(ghost)
 
-    
+
 }
 
