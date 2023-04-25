@@ -35,21 +35,3 @@ function initGame() {
 }
 
 initGame()
-
-// console.log(PIXI)
-// PIXI.Loader([
-//   'src/assets/cherry/cherry.png',
-//   // 'scene/middleground.png',
-// ]).then(() => {
-//   // initialize background image
-//   const cherries = PIXI.Sprite.from('scene/background.png')
-//   app.stage.addChild(background)
-
-//   // add the middle ground
-//   const middleground = PIXI.Sprite.from('scene/middleground.png')
-//   app.stage.addChild(middleground)
-
-//   // scale stage container to match the background size
-//   app.stage.scale.x = app.view.width / background.width
-//   app.stage.scale.y = app.view.height / background.height
-// })
