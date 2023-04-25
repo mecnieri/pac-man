@@ -3,7 +3,6 @@ export const obsticlesCoords = [
   createObsticle(0, 0, 0, 30),
   createObsticle(27, 0, 0, 30),
   createObsticle(0, 29.9, 27, 0),
-
   createObsticle(2, 2, 3, 2),
   createObsticle(7, 2, 4, 2),
   createObsticle(13, 0, 1, 4),
@@ -19,20 +18,27 @@ export const obsticlesCoords = [
   createObsticle(22, 6, 3, 1),
   createObsticle(0, 9, 5, 4),
   createObsticle(22, 9, 5, 4),
-  createObsticle(10, 12, 7, 3),
+  createObsticle(10, 12, 7, 4),
   createObsticle(0, 15, 5, 4),
   createObsticle(7, 15, 1, 4),
-  createObsticle(10, 17, 7, 1),
-  createObsticle(13, 18, 1, 3),
+  createObsticle(10, 18, 7, 1),
+  createObsticle(13, 19, 1, 3),
   createObsticle(19, 15, 1, 4),
-
-
-
-
-
-  // createObsticle(23, 7, 2, 6),
-  // createObsticle(12, 16, 5, 2),
-  // createObsticle(20, 21, 5, 3),
+  createObsticle(22, 15, 5, 4),
+  createObsticle(2, 21, 3, 1),
+  createObsticle(4, 22, 1, 3),
+  createObsticle(7, 21, 4, 1),
+  createObsticle(16, 21, 4, 1),
+  createObsticle(22, 21, 3, 1),
+  createObsticle(22, 22, 1, 3),
+  createObsticle(2, 27, 9, 1),
+  createObsticle(7, 24, 1, 3),
+  createObsticle(10, 24, 7, 1),
+  createObsticle(0, 24, 2, 1),
+  createObsticle(25, 24, 2, 1),
+  createObsticle(13, 25, 1, 3),
+  createObsticle(16, 27, 9, 1),
+  createObsticle(19, 24, 1, 3),
 ]
 
 function createObsticle(x, y, w, h) {
