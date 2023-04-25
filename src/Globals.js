@@ -6,4 +6,5 @@ export let Globals = {
 export let LoaderConfig = {
   cherry: 'src/assets/cherry/cherry.png',
   pmoving: 'src/assets/pacman/moving/spritesheet.png',
+  ghosts: 'src/assets/ghost/spritesheet.png',
 }
