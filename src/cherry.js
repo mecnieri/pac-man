@@ -3,21 +3,18 @@ export let cherries = []
 
 export let cherrysContainer = new PIXI.Container()
 
-// cherrysCoords.forEach(obs => {
-let cherry = new PIXI.Graphics()
-const cherrySprite = new PIXI.Sprite.from(Globals.resources['cherry'])
-console.log(Globals.cherry)
-console.log(Globals.resources)
-console.log(Globals)
-cherry.beginFill(0xff0000)
-cherry.drawCircle(0, 0, 10) // x, y, w, h
-cherry.x = 30
-cherry.y = 240
-cherry.eaten = function () {
-  this.visible = false
-}
+export const createCherry = () => {
 
-cherry.endFill()
-cherries.push(cherry)
-cherrysContainer.addChild(cherrySprite)
-// })
+  const cherrySprite = new PIXI.Sprite(Globals.resources['cherry'].texture)
+  cherrySprite.x = 30
+  cherrySprite.y = 240
+  cherrySprite.anchor.set(.5)
+  cherrySprite.pivot.set(.5)
+  cherrySprite.eaten = function () {
+    this.visible = false
+  }
+
+  cherries.push(cherrySprite)
+  return cherrysContainer.addChild(cherrySprite)
+
+}

@@ -3,7 +3,7 @@ import Pacman from './src/pacman/pacman.js'
 import { ghostContainer, ghosts } from './src/ghost/ghost.js'
 import { obsticlesContainer } from './src/obsticle/obsticle.js'
 import { cookiesContainer, cookies } from './src/cookies.js'
-import { cherrysContainer, cherries } from './src/cherry.js'
+import { cherrysContainer, cherries, createCherry } from './src/cherry.js'
 import { Loader } from './src/Loader.js'
 
 function initGame() {
@@ -23,8 +23,11 @@ function initGame() {
     app.stage.addChild(ghostContainer)
     app.stage.addChild(cherrysContainer)
     app.stage.addChild(pacman)
+    const cherry = createCherry()
+    app.stage.addChild(cherry)
 
     app.ticker.add(delta => {
+
       pacman.move(delta, ghosts, cookies, cherries)
       ghosts.forEach(gh => gh.move(delta))
     })
