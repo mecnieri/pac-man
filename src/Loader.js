@@ -1,7 +1,5 @@
-import { Globals } from './Globals.js'
-let LoaderConfig = {
-  cherry: 'src/assets/cherry/cherry.png',
-}
+import { Globals, LoaderConfig } from './Globals.js'
+
 export class Loader {
   constructor(loader) {
     this.loader = loader
@@ -13,8 +11,8 @@ export class Loader {
         this.loader.add(key, this.resources[key])
       }
       this.loader.load((loader, resourses) => {
-        console.log('resourses loaded')
-        console.log(PIXI.resources)
+        // console.log('resourses loaded')
+        // console.log(PIXI.resources)
         console.log(resourses)
         Globals.resources = resourses
         resolve()

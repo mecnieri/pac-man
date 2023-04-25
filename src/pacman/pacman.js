@@ -1,14 +1,23 @@
 import { isCollisionWithObsticle } from '../helpers.js'
-
+import spritesheetjson from '../assets/pacman/moving/spritesheet.json' assert { type: 'json'}
+import { Globals } from '../Globals.js'
 export default class Pacman {
   constructor() {
-    this.pacman = new PIXI.Graphics()
-    this.pacman.beginFill(0xfdff00)
+    this.frames = Object.values(spritesheetjson.frames)
+    this.textures = this.frames.map(fr => {
+      const { x, y, w, h } = fr.frame
+      const txt = new PIXI.Texture(Globals.resources.pmoving.texture, new PIXI.Rectangle(x, y, w, h))
+      return txt
+    })
+    this.pacman = new PIXI.AnimatedSprite(this.textures)
+    this.pacman.anchor.set(0.5, 0.5)
+    this.pacman.loop = false
     this.pacman.x = 30
     this.pacman.y = 30
     this.pacman.radius = 20
-    this.pacman.drawCircle(0, 0, this.pacman.radius)
-    this.pacman.endFill()
+    this.pacman.animationSpeed = .2
+    this.pacman.loop = true
+    this.pacman.play()
     this.pacman.desiredDirection = ''
     this.pacman.currentDirection = ''
     this.pacman.speed = 4
@@ -23,7 +32,9 @@ export default class Pacman {
     this.pacman.eatingCherry = this.eatingCherry
     this.pacman.stop = this.stop
     this.pacman.chasing = false
+
   }
+
 
   move(delta, ghosts, cookies, cherry) {
     this.eatingCookie(cookies)
@@ -131,6 +142,24 @@ export default class Pacman {
       this.x = this.roundNumber(this.x) :
       this.y = this.roundNumber(this.y)
     this.currentDirection = this.desiredDirection
+    switch (this.currentDirection) {
+      case 'ArrowRight':
+        this.rotation = Math.PI
+        break;
+      case 'ArrowLeft':
+        this.rotation = Math.PI * 2
+        break;
+      case 'ArrowUp':
+        this.rotation = Math.PI / 2
+        break;
+      case 'ArrowDown':
+        this.rotation = Math.PI / 2 * 3
+        break;
+
+      default:
+        break;
+    }
+
   }
   onKeyDown() {
     document.onkeydown = e => {
