@@ -11,9 +11,7 @@ export class Loader {
         this.loader.add(key, this.resources[key])
       }
       this.loader.load((loader, resourses) => {
-        // console.log('resourses loaded')
-        // console.log(PIXI.resources)
-        console.log(resourses)
+        // console.log(resourses)
         Globals.resources = resourses
         resolve()
       })

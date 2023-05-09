@@ -1,12 +1,15 @@
 import { isCollisionWithObsticle } from '../helpers.js'
-import spritesheetjson from '../assets/pacman/moving/spritesheet.json' assert { type: 'json'}
+import spritesheetjson from '../assets/pacman/moving/spritesheet.json' assert { type: 'json' }
 import { Globals } from '../Globals.js'
 export default class Pacman {
   constructor() {
     this.frames = Object.values(spritesheetjson.frames)
     this.textures = this.frames.map(fr => {
       const { x, y, w, h } = fr.frame
-      const txt = new PIXI.Texture(Globals.resources.pmoving.texture, new PIXI.Rectangle(x, y, w, h))
+      const txt = new PIXI.Texture(
+        Globals.resources.pmoving.texture,
+        new PIXI.Rectangle(x, y, w, h),
+      )
       return txt
     })
     this.pacman = new PIXI.AnimatedSprite(this.textures)
@@ -15,7 +18,7 @@ export default class Pacman {
     this.pacman.x = 30
     this.pacman.y = 30
     this.pacman.radius = 20
-    this.pacman.animationSpeed = .2
+    this.pacman.animationSpeed = 0.2
     this.pacman.loop = true
     this.pacman.play()
     this.pacman.desiredDirection = ''
@@ -23,18 +26,18 @@ export default class Pacman {
     this.pacman.speed = 4
     this.onKeyDown()
     this.pacman.move = this.move
-    this.pacman.checkDesiredDirectionAndChangeIfPosible = this.checkDesiredDirectionAndChangeIfPosible
+    this.pacman.checkDesiredDirectionAndChangeIfPosible =
+      this.checkDesiredDirectionAndChangeIfPosible
     this.pacman.checkCurrentDirectionAndGo = this.checkCurrentDirectionAndGo
-    this.pacman.changeDirectionAndRoundCoordinate = this.changeDirectionAndRoundCoordinate
+    this.pacman.changeDirectionAndRoundCoordinate =
+      this.changeDirectionAndRoundCoordinate
     this.pacman.roundNumber = this.roundNumber
     this.pacman.checkCollisionWithGhosts = this.checkCollisionWithGhosts
     this.pacman.eatingCookie = this.eatingCookie
     this.pacman.eatingCherry = this.eatingCherry
     this.pacman.stop = this.stop
     this.pacman.chasing = false
-
   }
-
 
   move(delta, ghosts, cookies, cherry) {
     this.eatingCookie(cookies)
@@ -74,22 +77,52 @@ export default class Pacman {
     switch (desiredDirection) {
       case 'ArrowRight':
         this.nextX = this.x + this.speed * delta
-        if (isCollisionWithObsticle('right', this.x, this.y, this.nextX, this.radius)) return
+        if (
+          isCollisionWithObsticle(
+            'right',
+            this.x,
+            this.y,
+            this.nextX,
+            this.radius,
+          )
+        )
+          return
         this.changeDirectionAndRoundCoordinate('y')
         break
       case 'ArrowLeft':
         this.nextX = this.x - this.speed * delta
-        if (isCollisionWithObsticle('left', this.x, this.y, this.nextX, this.radius)) return
+        if (
+          isCollisionWithObsticle(
+            'left',
+            this.x,
+            this.y,
+            this.nextX,
+            this.radius,
+          )
+        )
+          return
         this.changeDirectionAndRoundCoordinate('y')
         break
       case 'ArrowUp':
         this.nextY = this.y - this.speed * delta
-        if (isCollisionWithObsticle('up', this.x, this.y, this.nextY, this.radius)) return
+        if (
+          isCollisionWithObsticle('up', this.x, this.y, this.nextY, this.radius)
+        )
+          return
         this.changeDirectionAndRoundCoordinate('x')
         break
       case 'ArrowDown':
         this.nextY = this.y + this.speed * delta
-        if (isCollisionWithObsticle('down', this.x, this.y, this.nextY, this.radius,)) return
+        if (
+          isCollisionWithObsticle(
+            'down',
+            this.x,
+            this.y,
+            this.nextY,
+            this.radius,
+          )
+        )
+          return
         this.changeDirectionAndRoundCoordinate('x')
         break
     }
@@ -98,7 +131,15 @@ export default class Pacman {
     switch (currentDirection) {
       case 'ArrowRight':
         this.nextX = this.x + this.speed * delta
-        if (isCollisionWithObsticle('right', this.x, this.y, this.nextX, this.radius)) {
+        if (
+          isCollisionWithObsticle(
+            'right',
+            this.x,
+            this.y,
+            this.nextX,
+            this.radius,
+          )
+        ) {
           this.x = this.roundNumber(this.x)
           this.y = this.roundNumber(this.y)
           return
@@ -107,7 +148,15 @@ export default class Pacman {
         break
       case 'ArrowLeft':
         this.nextX = this.x - this.speed * delta
-        if (isCollisionWithObsticle('left', this.x, this.y, this.nextX, this.radius)) {
+        if (
+          isCollisionWithObsticle(
+            'left',
+            this.x,
+            this.y,
+            this.nextX,
+            this.radius,
+          )
+        ) {
           this.x = this.roundNumber(this.x)
           this.y = this.roundNumber(this.y)
           return
@@ -116,7 +165,9 @@ export default class Pacman {
         break
       case 'ArrowUp':
         this.nextY = this.y - this.speed * delta
-        if (isCollisionWithObsticle('up', this.x, this.y, this.nextY, this.radius)) {
+        if (
+          isCollisionWithObsticle('up', this.x, this.y, this.nextY, this.radius)
+        ) {
           this.x = this.roundNumber(this.x)
           this.y = this.roundNumber(this.y)
           return
@@ -125,7 +176,15 @@ export default class Pacman {
         break
       case 'ArrowDown':
         this.nextY = this.y + this.speed * delta
-        if (isCollisionWithObsticle('down', this.x, this.y, this.nextY, this.radius,)) {
+        if (
+          isCollisionWithObsticle(
+            'down',
+            this.x,
+            this.y,
+            this.nextY,
+            this.radius,
+          )
+        ) {
           this.x = this.roundNumber(this.x)
           this.y = this.roundNumber(this.y)
           return
@@ -138,28 +197,27 @@ export default class Pacman {
     return Math.round(n / 29.615) * 29.615
   }
   changeDirectionAndRoundCoordinate(coordinate) {
-    coordinate === 'x' ?
-      this.x = this.roundNumber(this.x) :
-      this.y = this.roundNumber(this.y)
+    coordinate === 'x'
+      ? (this.x = this.roundNumber(this.x))
+      : (this.y = this.roundNumber(this.y))
     this.currentDirection = this.desiredDirection
     switch (this.currentDirection) {
       case 'ArrowRight':
         this.rotation = Math.PI
-        break;
+        break
       case 'ArrowLeft':
         this.rotation = Math.PI * 2
-        break;
+        break
       case 'ArrowUp':
         this.rotation = Math.PI / 2
-        break;
+        break
       case 'ArrowDown':
-        this.rotation = Math.PI / 2 * 3
-        break;
+        this.rotation = (Math.PI / 2) * 3
+        break
 
       default:
-        break;
+        break
     }
-
   }
   onKeyDown() {
     document.onkeydown = e => {
@@ -184,4 +242,4 @@ const checkCollision = (pacman, ghost) => {
     pacman.y + 20 > ghost.y - 20 &&
     pacman.y - 20 < ghost.y + 20
   )
-}   
+}
