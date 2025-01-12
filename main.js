@@ -17,8 +17,7 @@ function initGame() {
   loader.preload().then(() => start())
 
   function start() {
-    console.log('game started')
-    const { pacman } = new Pacman()
+     const { pacman } = new Pacman()
 
     const ghostsContainer = createGhosts()
 

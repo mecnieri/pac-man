@@ -1,5 +1,5 @@
 import { isCollisionWithObsticle } from '../helpers.js'
-import spritesheetjson from '../assets/pacman/moving/spritesheet.json' assert { type: 'json' }
+import spritesheetjson from '../assets/pacman/moving/spritesheet.json' with { type: 'json' }
 import { Globals } from '../Globals.js'
 export default class Pacman {
   constructor() {
@@ -224,7 +224,50 @@ export default class Pacman {
       e = e || window.event
       this.pacman.desiredDirection = e.key
     }
+
+
+    window.addEventListener('touchstart', e => {
+      this.clientX = e.touches[0].clientX
+      this.clientY = e.touches[0].clientY
+    })
+
+    document.addEventListener('touchend', () => {
+      this.count = 0
+    })
+    document.addEventListener('touchmove', e => {
+      // e.preventDefault()
+      this.count++
+      if (this.count === 4) {
+        for (let i = 0; i < e.changedTouches.length; i++) {
+          // Compute the change in X and Y coordinates.
+          // The first touch point in the changedTouches
+          // list is the touch point that was just removed from the surface.
+          let deltaX = e.changedTouches[i].clientX - this.clientX
+          let deltaY = e.changedTouches[i].clientY - this.clientY
+          if (Math.abs(deltaX) > Math.abs(deltaY)) {
+            if (deltaX > 0) {
+              this.pacman.desiredDirection = 'ArrowRight'
+            } else {
+              this.pacman.desiredDirection = 'ArrowLeft'
+              // this.moveLeft()
+            }
+          } else {
+            if (deltaY > 0) {
+              this.pacman.desiredDirection = 'ArrowDown'
+              // this.moveDown()
+            } else {
+              this.pacman.desiredDirection = 'ArrowUp'
+              // this.moveUp()
+            }
+          }
+        }
+      }
+    })
+
   }
+
+
+
 }
 
 const checkEating = (pacman, object) => {

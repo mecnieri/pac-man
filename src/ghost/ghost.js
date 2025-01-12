@@ -1,13 +1,12 @@
 import { isCollisionWithObsticle } from '../helpers.js'
 import { changeDirection } from './ghostHelpers.js'
-import spritesheetjson from '../assets/ghost/spritesheet.json' assert { type: 'json' }
+import spritesheetjson from '../assets/ghost/spritesheet.json' with { type: 'json' }
 import { Globals } from '../Globals.js'
 
-class Ghost  {
+class Ghost {
   constructor(x, y, textures1, feared) {
     this.ghost = new PIXI.AnimatedSprite(textures1)
     this.ghost.feared = feared
-    console.log(this.ghost)
     this.ghost.anchor.set(0.5, 0.5)
     this.ghost.animationSpeed = 0.2
     this.ghost.play()
